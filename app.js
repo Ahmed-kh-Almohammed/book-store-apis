@@ -15,7 +15,9 @@ connectToDB();
 ///
 
 const app = express();
+app.set('view engine','ejs');
 app.use(express.json());///change json to js object 
+app.use(express.urlencoded({extended:false}));/// 
 app.use(logger);
 const PORT = process.env.PORT || 5000;
 
@@ -24,6 +26,8 @@ app.use("/api/books", require("./routes/books"));
 app.use("/api/authors", require("./routes/auth"));
 app.use("/api/user",require("./routes/userreg"));
 app.use("/api/users",require("./routes/user"));
+app.use("/password",require("./routes/password"));
+app.use("/api/upload",require("./routes/upload"));
 
 //Error handler middlewares 
 app.use(notFound);
